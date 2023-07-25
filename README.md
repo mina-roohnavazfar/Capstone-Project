@@ -19,7 +19,7 @@ Project Organization
     ├── Presentation_Bike Sharing System.pdf    <- Initial presentation of the project
     |
     ├── notebooks
-    |   ├── EDA_Bike Sharing System.ipynb   <- Project notebook 1 - data preparation and exploration
+    |   ├── sprint1_EDA.ipynb   <- Project notebook 1 - data preparation and exploration
  
 This part will be completed in alignment with the progress of the project
 
