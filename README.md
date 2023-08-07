@@ -1,5 +1,8 @@
 # Capstone Project: Demand Forecasting in Bike Shring Systems
+=============================================================
 ## Introduction
+=============================================================
+
 Bike sharing systems have emerged as a new generation of transportation services, offering convenient and automated rental processes. These systems allow users to easily rent bikes from one location and return them to another, providing flexibility and accessibility for urban commuters and tourists alike. Bike-sharing rental process is highly correlated to the environmental and seasonal settings. For instance, weather conditions, precipitation, day of week, season, hour of the day, etc. can affect the rental behaviors. 
 These systems have gained immense popularity due to their convenience and accessibility. With the entire process, from membership to rental and return, being automated, users can effortlessly rent bikes from one location and return them at another. Currently, there are more than 500 bike-sharing programs worldwide, featuring over 500,000 bicycles. These systems have become crucial players in addressing traffic, environmental, and health concerns.
 
@@ -11,26 +14,66 @@ To model the dataset, we adopt two distinct approaches. The first approach treat
 
 Alternatively, the second approach involves developing two separate models, each associated with 'casual' and 'registered' users. We then aggregate the predictions from these models to compute the 'cnt' variable. This method grants us deeper insights into the dataset, allowing us to comprehend the respective contributions of 'casual' and 'registered' users to the overall 'cnt' variable.
 
-Project Organization
-------------
+The solution we propose benefits multiple stakeholders. Urban planners and policymakers can optimize bike-sharing resources, addressing traffic congestion and promoting eco-friendly transport. Bike-sharing operators can enhance user experience by ensuring bike availability during peak times. Commuters and tourists enjoy improved convenience and access to transportation. Overall, the project aligns with the interests of city planners, bike-sharing providers, and the community at large.
+
+=============================================================
+## Project Organization
+=============================================================
     
-    ├── README.md          <- The main README document for developers utilizing this project.
+    ├── README.md                     <- The main README document for developers utilizing this project.
     |
-    ├── Presentation_Bike Sharing System.pdf    <- Initial presentation of the project
+    ├── data (https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset)   
+    |
+    ├── Presentation1_EDA.pdf         <- Initial presentation of the project including EDA
+    ├── Presentation2_Modeling.pdf    <- Second presentation of the project including Modeling
     |
     ├── notebooks
-    |   ├── sprint1_EDA.ipynb   <- Project notebook 1 - data preparation and exploration
+    |   ├── sprint1_EDA.ipynb        <- Project notebook 1 - data preparation and exploration
+    |   ├── sprint2_Modeling.ipynb   <- Project notebook 2 - data modeling
  
-This part will be completed in alignment with the progress of the project
 
-
+=============================================================
 ## Table of contents
-- Data Download, Cleaning & Exploratory Data Analysis
+=============================================================
+
+- Bike Sharing Dataset 
+- Exploratory Data Analysis (EDA)
 - Modelling
 - Conclusions
 
+=============================================================
+## Bike Sharing Dataset
+=============================================================
+
+	- instant: record index
+	- dteday : date
+	- season : season (1:springer, 2:summer, 3:fall, 4:winter)
+	- yr : year (0: 2011, 1:2012)
+	- mnth : month ( 1 to 12)
+	- hr : hour (0 to 23)
+	- holiday : whether day is holiday or not (extracted from http://dchr.dc.gov/page/holiday-schedule)
+	- weekday : day of the week
+	- workingday : if day is neither weekend nor holiday is 1, otherwise is 0.
+	+ weathersit : 
+		- 1: Clear, Few clouds, Partly cloudy, Partly cloudy
+		- 2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist
+		- 3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds
+		- 4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog
+	- temp : Normalized temperature in Celsius. The values are divided to 41 (max)
+	- atemp: Normalized feeling temperature in Celsius. The values are divided to 50 (max)
+	- hum: Normalized humidity. The values are divided to 100 (max)
+	- windspeed: Normalized wind speed. The values are divided to 67 (max)
+	- casual: count of casual users
+	- registered: count of registered users
+	- cnt: count of total rental bikes including both casual and registered
+
+=============================================================
 ## Data Download, Cleaning & Exploratory Data Analysis
-Our exploratory data analysis (EDA) process consists of three main steps. Firstly, we download the dataset from the UCI Machine Learning Repository (https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset). Secondly, we examine the dataset's structure and contents, checking for duplicated rows, columns, and missing values. In the third step, we analyze and visualize the data to gain insights into its distribution and identify correlations between variables and the target variables ('cnt', 'casual', and 'registered'). Here are some key observations from the EDA:
+=============================================================
+
+Our exploratory data analysis (EDA) process consists of three main steps. Firstly, we download the dataset from the UCI Machine Learning Repository (https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset). Secondly, we examine the dataset's structure and contents, checking for duplicated rows, columns, and missing values. In the third step, we analyze and visualize the data to gain insights into its distribution and identify correlations between variables and the target variables ('cnt', 'casual', and 'registered'). 
+
+Here are some key observations from the EDA:
 
 - The columns 'month' and 'season' exhibit a strong positive correlation.
 - 'temp' and 'atemp' are highly correlated.
@@ -45,9 +88,16 @@ Our exploratory data analysis (EDA) process consists of three main steps. Firstl
 - For casual users, the average number of rentals is lower on working days than on non-working days. Conversely, this behavior is opposite for registered users.
 - The mean number of rentals for both casual and registered users, as well as the 'cnt' variable, shows a decreasing trend as the values of weather situations increase.
 - All the columns are significantly correlated with the three types of rental bikes (casual/registered/cnt).
+
 These insights will guide our subsequent modeling and analysis efforts, helping us make informed decisions based on the patterns and relationships identified during the EDA process.
 
+=============================================================
 ## Modeling
-This section will be addressed in future analyses.
+=============================================================
+
+
+=============================================================
 ## Conclusion
+=============================================================
+
 This section will be addressed in future analyses.
