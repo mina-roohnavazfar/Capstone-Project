@@ -94,7 +94,19 @@ These insights will guide our subsequent modeling and analysis efforts, helping 
 =============================================================
 ## Modeling
 =============================================================
+Considering the dataset's characteristics, we are planning to employ Linear and Non Linear Regression models for predicting our target variables.
 
+Our project involves two distinct approaches for data modeling: 
+
+First Approach: we treat 'cnt' as the target variable and endeavor to predict its value based on the other independent variables. Here, 'cnt' serves as the comprehensive outcome we aim to forecast.
+Second Approach: It involves developing two separate models, each associated with 'casual' and 'registered' users. We then aggregate the predictions from these models to compute the 'cnt' variable. This method grants us deeper insights into the dataset, allowing us to comprehend the respective contributions of 'casual' and 'registered' users to the overall 'cnt' variable.
+
+Here are some key insights from the Data Modeling:
+
+- In summary, our findings indicate that the Neural Network consistently excels across the three target variables, exhibiting the lowest PMAE and PRMSE values, as well as the highest R-squared and Adjusted R-squared values. The Non Linear Regression model is a strong contender, often ranking second in terms of performance. The Decision Tree and Linear Regression models showcases competitive results, although it tends to be outperformed by the Neural Network and Non Linear Regression models.
+- Taking into account the evaluation metrics, it appears that the performance of the models in predicting the Combined (Casual + Registered) Rentals is not as strong. This is evident from the fact that the PMAE and PRMSE values for all four models are higher when compared to the models predicting the total count target variable directly.
+- Values of R-squared and Adjusted R-squared across models and target variables stay very close, which indicates we do not have overfitting in terms of model complexity. These metrics reflect how well the models fit the data, and the similarity between the R-squared and Adjusted R-squared values suggests that the models are not capturing noise or random variations in the training data. This is a positive indication that the models are not overly complex and are generalizing well to unseen data.
+- PMAE and PRMSE values for test and train datasets exhibit a remarkable similarity for almost all models and target variables. However, in a certain case, applying Neural Network model to predict Casual rentals, the PMAE and PRMSE values for the train dataset are noticeably lower than those for the test dataset. This discrepancy suggests overfitting.
 
 =============================================================
 ## Conclusion
