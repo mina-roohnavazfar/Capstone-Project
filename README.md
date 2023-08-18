@@ -94,7 +94,8 @@ These insights will guide our subsequent modeling and analysis efforts, helping 
 =============================================================
 ## Modeling
 =============================================================
-Considering the dataset's characteristics, we are planning to employ Linear and Non Linear Regression models for predicting our target variables.
+
+Considering the dataset's characteristics, we are planning to employ Linear and Non Linear Regression, Neural Network, and Decision Tree models for predicting our target variables.
 
 Our project involves two distinct approaches for data modeling: 
 
