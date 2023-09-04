@@ -1,4 +1,4 @@
-# Capstone Project: Demand Forecasting in Bike Sharing Rental Systems
+# Capstone Project: Demand Forecasting in a Bike Sharing Rental System in Washington, D.C.
 =============================================================
 ## Introduction
 =============================================================
@@ -10,9 +10,9 @@ My project aims to forecast the number of bike rentals for the years 2011 and 20
 
 The dataset comprises 17 columns and 17379 records, providing valuable information for analysis. Among the columns, we have independent variables such as 'dteday', 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'temp', 'atemp', 'hum', and 'windspeed'. Additionally, there are three target variables: 'cnt', 'casual', and 'registered'. The 'cnt' variable represents the total sum of bike rentals for both 'casual' and 'registered' users.
 
-To model the dataset, we adopt two distinct approaches. The first approach treats 'cnt' as the target variable and endeavors to predict its value based on the other independent variables. Here, 'cnt' serves as the comprehensive outcome we aim to forecast.
+To model the dataset, we adopt two distinct approaches. The first approach treats total rentals ('cnt') as the target variable and endeavors to predict its value based on the other independent variables. Here, 'cnt' serves as the comprehensive outcome we aim to forecast.
 
-Alternatively, the second approach involves developing two separate models, each associated with 'casual' and 'registered' users. We then aggregate the predictions from these models to compute the 'cnt' variable. This method grants us deeper insights into the dataset, allowing us to comprehend the respective contributions of 'casual' and 'registered' users to the overall 'cnt' variable.
+Alternatively, the second approach involves developing two separate models, each associated with casual rentals ('casual') and registered rentals ('registered'). We then aggregate the predictions from these models to compute the total rentals. This method grants us deeper insights into the dataset, allowing us to comprehend the respective contributions of 'casual' and 'registered' users to the overall 'cnt' variable.
 
 The solution we propose benefits multiple stakeholders. Urban planners and policymakers can optimize bike-sharing resources, addressing traffic congestion and promoting eco-friendly transport. Bike-sharing operators can enhance user experience by ensuring bike availability during peak times. Commuters and tourists enjoy improved convenience and access to transportation. Overall, the project aligns with the interests of city planners, bike-sharing providers, and the community at large.
 
@@ -20,16 +20,20 @@ The solution we propose benefits multiple stakeholders. Urban planners and polic
 ## Project Organization
 =============================================================
     
-    ├── README.md                     <- The main README document for developers utilizing this project.
+    ├── README.md                           <- The main README document for developers utilizing this project.
     |
     ├── data (https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset)   
     |
-    ├── Presentation1_EDA.pdf         <- Initial presentation of the project including EDA
-    ├── Presentation2_Modeling.pdf    <- Second presentation of the project including Modeling
+    ├── Presentation_EDA.pdf                <- Initial presentation of the project including EDA
+    ├── presentation_baseline_models.pdf    <- Second presentation of the project including baseline models
+    ├── Presentation_final.pdf              <- Final presentation of the project 
     |
     ├── notebooks
-    |   ├── sprint1_EDA.ipynb        <- Project notebook 1 - data preparation and exploration
-    |   ├── sprint2_Modeling.ipynb   <- Project notebook 2 - data modeling
+    |   ├── EDA.ipynb                          <- Project notebook 1 - data preparation and exploration
+    |   ├── baseline_models.ipynb              <- Project notebook 2 - baseline modeling
+    |   ├── modeling-total-rentals.ipynb       <- Project notebook 3 - final models for total rentals
+    |   ├── modeling-casual-rentals.ipynb      <- Project notebook 3 - final models for casual rentals
+    |   ├── modeling-registered-rentals.ipynb  <- Project notebook 3 - final models for registered rentals
  
 
 =============================================================
@@ -37,13 +41,14 @@ The solution we propose benefits multiple stakeholders. Urban planners and polic
 =============================================================
 
 - Bike Sharing Dataset 
-- Exploratory Data Analysis (EDA)
+- Data Download, Cleaning & EDA
 - Modelling
 - Conclusions
 
 =============================================================
 ## Bike Sharing Dataset
 =============================================================
+The dataset (data.csv) includes the following fields:
 
 	- instant: record index
 	- dteday : date
@@ -76,7 +81,7 @@ Our exploratory data analysis (EDA) process consists of three main steps. Firstl
 Here are some key observations from the EDA:
 
 - The columns 'month' and 'season' exhibit a strong positive correlation.
-- 'temp' and 'atemp' are highly correlated.
+- Features 'temp' and 'atemp' are highly correlated.
 - The columns 'registered', 'cnt', and 'casual' show a high positive correlation with each other.
 - The variables 'casual', 'registered', and 'cnt' demonstrate a notably strong right-skewed distribution.
 - On average, the number of bikes rented by casual users is lower than that of registered users over the two years.
@@ -94,24 +99,30 @@ These insights will guide our subsequent modeling and analysis efforts, helping 
 =============================================================
 ## Modeling
 =============================================================
-
-Considering the dataset's characteristics, we are planning to employ Linear and Non Linear Regression, Neural Network, and Decision Tree models for predicting our target variables.
+Given the characteristics of our dataset, our approach to predictive modeling involves using various regression techniques, including both linear and non-linear regression, neural networks, decision trees, ensemble methods, and PCA integrated models. 
 
 Our project involves two distinct approaches for data modeling: 
 
-First Approach: we treat 'cnt' as the target variable and endeavor to predict its value based on the other independent variables. Here, 'cnt' serves as the comprehensive outcome we aim to forecast.
+First Approach: we treat total rentals ('cnt') as the target variable and endeavor to predict its value based on the other independent variables. Here, 'cnt' serves as the comprehensive outcome we aim to forecast.
 
-Second Approach: It involves developing two separate models, each associated with 'casual' and 'registered' users. We then aggregate the predictions from these models to compute the 'cnt' variable. This method grants us deeper insights into the dataset, allowing us to comprehend the respective contributions of 'casual' and 'registered' users to the overall 'cnt' variable.
+Second Approach: It involves developing two separate models, each associated with casual rentals ('casual') and registered rentals ('registered'). We then aggregate the predictions from these models to compute the total rentals. This method grants us deeper insights into the dataset, allowing us to comprehend the respective contributions of 'casual' and 'registered' users to the overall 'cnt' variable.
 
-Here are some key insights from the Data Modeling:
+As we proceed with the development of our baseline models, we establish a robust model evaluation framework that aligns with the practical application of our models. This framework will enable us to assess the performance of our models accurately and make informed decisions regarding their robustness for the real-world scenarios. To achieve this, we will consider different evaluation metrics as Percentage Mean Absolute Error (PMAE), R-squared, and adj-R-squared which help us identify which approaches offer superior predictive capabilities in modeling total count bike rentals.
 
-- The Neural Network consistently excels across the three target variables, exhibiting the lowest PMAE and PRMSE values, as well as the highest R-squared and Adjusted R-squared values. The Non Linear Regression model is a strong contender, often ranking second in terms of performance. The Decision Tree and Linear Regression models showcases competitive results, although it tends to be outperformed by the Neural Network and Non Linear Regression models.
-- Taking into account the evaluation metrics, it appears that the performance of the models in predicting the Combined (Casual + Registered) Rentals is not as strong. This is evident from the fact that the PMAE and PRMSE values for all four models are higher when compared to the models predicting the total count target variable directly.
-- Values of R-squared and Adjusted R-squared across models and target variables stay very close, which indicates we do not have overfitting in terms of model complexity. These metrics reflect how well the models fit the data, and the similarity between the R-squared and Adjusted R-squared values suggests that the models are not capturing noise or random variations in the training data. This is a positive indication that the models are not overly complex and are generalizing well to unseen data.
-- PMAE and PRMSE values for test and train datasets exhibit a remarkable similarity for almost all models and target variables. However, in a certain case, applying Neural Network model to predict Casual rentals, the PMAE and PRMSE values for the train dataset are noticeably lower than those for the test dataset. This discrepancy suggests overfitting.
+Here are the key insights from the Data Modeling:
+
+- Our findings highlight that the integrated PCA-Gradient Boosting pipeline, Gradient Boosting, Bagging, and Neural Network models emerge as the top performers in predicting all the three target variables 'Total Rentals', 'registered rentals', and 'casual rentals', as evidenced by their favorable results in terms of PMAE, R-squared, and Adjusted R-squared values.
+- By contrasting the PMAE values for the aggregated prediction (casual rentals + registered rentals) with those pertaining to the total count target variable, it becomes evident that the method involving separate models for forecasting casual and registered users, followed by summation, results in inferior performance when compared to directly predicting the total count.
 
 =============================================================
 ## Conclusion
 =============================================================
+In this project, our primary objective was to predict three key rental metrics: total rentals, casual rentals, and registered rentals. To achieve this, we followed a structured approach that encompassed exploratory data analysis (EDA) and the application of various predictive models. Our model evaluations were based on key performance metrics such as Percentage Mean Absolute Error (PMAE), R-squared (R²), and adjusted R-squared (adj R²).
 
-This section will be addressed in future analyses.
+Among the models we experimented with, including the innovative PCA-Gradient Boosting pipeline, Gradient Boosting emerged as the top-performing algorithm. It demonstrated the highest accuracy and the lowest PMAE when predicting the target variables. Particularly, our models excelled in predicting total rentals and registered rentals, providing reliable forecasts for these metrics.
+
+However, it's worth noting that predicting casual rentals proved to be somewhat more challenging. While the models exhibited strong performance in other areas, there was room for improvement in predicting casual rentals.
+
+In terms of the best approach for predicting total rentals, our findings suggest that a direct prediction model outperforms the use of separate models for forecasting casual and registered users, followed by aggregating the results. This streamlined approach not only enhances accuracy but also simplifies the modeling process.
+
+Overall, this project offers valuable insights into rental prediction models, highlighting the importance of model selection and the potential benefits of integrating PCA into Gradient Boosting. The outcomes and observations provided here will inform future iterations of rental forecasting and contribute to more effective decision-making in the domain of bike-sharing rentals.
