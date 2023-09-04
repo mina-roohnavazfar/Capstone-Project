@@ -22,7 +22,8 @@ The solution we propose benefits multiple stakeholders. Urban planners and polic
     
     ├── README.md                           <- The main README document for developers utilizing this project.
     |
-    ├── data (https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset)   
+    ├── data.csv (https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset)   
+    ├── data_for_modeling.csv   <- Processed data obtained from EDA
     |
     ├── Presentation_EDA.pdf                <- Initial presentation of the project including EDA
     ├── presentation_baseline_models.pdf    <- Second presentation of the project including baseline models
@@ -48,6 +49,7 @@ The solution we propose benefits multiple stakeholders. Urban planners and polic
 =============================================================
 ## Bike Sharing Dataset
 =============================================================
+
 The dataset (data.csv) includes the following fields:
 
 	- instant: record index
@@ -99,6 +101,7 @@ These insights will guide our subsequent modeling and analysis efforts, helping 
 =============================================================
 ## Modeling
 =============================================================
+
 Given the characteristics of our dataset, our approach to predictive modeling involves using various regression techniques, including both linear and non-linear regression, neural networks, decision trees, ensemble methods, and PCA integrated models. 
 
 Our project involves two distinct approaches for data modeling: 
@@ -117,6 +120,7 @@ Here are the key insights from the Data Modeling:
 =============================================================
 ## Conclusion
 =============================================================
+
 In this project, our primary objective was to predict three key rental metrics: total rentals, casual rentals, and registered rentals. To achieve this, we followed a structured approach that encompassed exploratory data analysis (EDA) and the application of various predictive models. Our model evaluations were based on key performance metrics such as Percentage Mean Absolute Error (PMAE), R-squared (R²), and adjusted R-squared (adj R²).
 
 Among the models we experimented with, including the innovative PCA-Gradient Boosting pipeline, Gradient Boosting emerged as the top-performing algorithm. It demonstrated the highest accuracy and the lowest PMAE when predicting the target variables. Particularly, our models excelled in predicting total rentals and registered rentals, providing reliable forecasts for these metrics.
