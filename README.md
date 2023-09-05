@@ -35,6 +35,10 @@ The solution we propose benefits multiple stakeholders. Urban planners and polic
     |   ├── modeling-total-rentals.ipynb       <- Project notebook 3 - final models for total rentals
     |   ├── modeling-casual-rentals.ipynb      <- Project notebook 3 - final models for casual rentals
     |   ├── modeling-registered-rentals.ipynb  <- Project notebook 3 - final models for registered rentals
+    |
+    ├── app
+    |   ├── GB.pkl                             <- Gradient Boosting model
+    |   ├── App_Rental_Prediction.py           <- Streamlit python code
  
 
 =============================================================
